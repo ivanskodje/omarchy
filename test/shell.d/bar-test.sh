@@ -58,6 +58,12 @@ if ! rg -q 'canReorder:.*!slot\.locked' "$ROOT/shell/plugins/bar/Bar.qml"; then
 fi
 pass "bar reorder gate refuses a locked slot"
 
+if ! perl -0ne 'exit(/id:\s*modulePointer\b[\s\S]*?onPositionChanged:\s*function[^{]*\{\s*if\s*\(!canReorder\b[^\n]*\)\s*return\b/ ? 0 : 1)' \
+  "$ROOT/shell/plugins/bar/Bar.qml"; then
+  fail "bar widget drag must start only past the reorder gate"
+fi
+pass "bar widget drag starts only past the reorder gate"
+
 run_node_test <<'JS'
 const fs = require('fs')
 const bar = requireFromRoot('shell/plugins/bar/BarModel.js')
