@@ -324,7 +324,7 @@ assertDeepEqual(bar.entrySettings({ id: 'omarchy.clock', format: 'HH:mm' }), { f
 assertEqual(bar.entryId({ id: 'omarchy.clock' }), 'omarchy.clock', 'bar extracts object entry ids')
 assertEqual(bar.entryId('omarchy.clock'), 'omarchy.clock', 'bar extracts string entry ids')
 
-assertDeepEqual(bar.entrySettings({ id: 'omarchy.workspaces', locked: true }), {}, 'bar keeps the lock flag out of widget settings')
+assertDeepEqual(bar.entrySettings({ id: 'omarchy.workspaces', locked: true }), { locked: true }, 'bar passes the lock flag through to widget settings')
 assertEqual(bar.entryLocked({ id: 'omarchy.workspaces', locked: true }), true, 'bar reads a locked entry')
 assertEqual(bar.entryLocked({ id: 'omarchy.workspaces' }), false, 'bar treats an entry with no flag as movable')
 assertEqual(bar.entryLocked({ id: 'omarchy.workspaces', locked: 'yes' }), false, 'bar ignores a lock flag that is not literally true')

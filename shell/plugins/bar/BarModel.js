@@ -11,7 +11,7 @@ function entrySettings(entry) {
   if (!isPlainObject(entry)) return {}
   var copy = {}
   for (var key in entry) {
-    if (key === "id" || key === "locked") continue
+    if (key === "id") continue
     copy[key] = entry[key]
   }
   return copy
