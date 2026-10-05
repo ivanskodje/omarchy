@@ -96,6 +96,7 @@ function inlineSettingsDelta(current, next) {
     if (a.length !== b.length) return null
     for (var j = 0; j < a.length; j++) {
       if (entryId(a[j]) !== entryId(b[j])) return null
+      if (entryLocked(a[j]) !== entryLocked(b[j])) return null
       if (JSON.stringify(a[j]) === JSON.stringify(b[j])) continue
       if (customModuleType(a[j]) || customModuleType(b[j])) return null
       if (counts[entryId(b[j])] > 1) return null

@@ -360,6 +360,16 @@ assertEqual(
   'bar rebuilds for custom modules, which read their entry directly'
 )
 assertEqual(
+  bar.inlineSettingsDelta(settingsLayout, { left: [{ id: 'omarchy.power', locked: true }], center: settingsLayout.center, right: [] }),
+  null,
+  'bar rebuilds when an entry is locked, since slots read the lock from their entry'
+)
+assertEqual(
+  bar.inlineSettingsDelta({ left: [{ id: 'omarchy.power', locked: true }], center: [], right: [] }, { left: [{ id: 'omarchy.power' }], center: [], right: [] }),
+  null,
+  'bar rebuilds when an entry is unlocked'
+)
+assertEqual(
   bar.inlineSettingsDelta(
     { left: [{ id: 'x' }], center: [], right: [{ id: 'x' }] },
     { left: [{ id: 'x', a: 1 }], center: [], right: [{ id: 'x' }] }
